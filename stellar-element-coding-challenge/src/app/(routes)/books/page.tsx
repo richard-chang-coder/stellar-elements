@@ -44,12 +44,17 @@ export default function BooksPage() {
 		setCurrentPage(0);
 	};
 
+	const handlePageChange = (page: number) => {
+		setCurrentPage(page);
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	};
+
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between pb-10">
 			<Header onSearch={handleSearch} />
-			<section className="p-5 px-24 w-full">
+			<section className="p-5 md:px-24 w-full">
 				<div className="container mx-auto flex flex-col gap-10 ">
-					<div className="w-1/2">
+					<div className="md:w-1/2">
 						<h1 className="capitalize mb-5">
 							<span className="text-blue-500">
 								{selectedCategory}
@@ -70,7 +75,7 @@ export default function BooksPage() {
 					<BookList list={books.items} />
 					<Pagination
 						currentPage={currentPage}
-						onPageChange={setCurrentPage}
+						onPageChange={handlePageChange}
 						totalItems={books.totalItems}
 						itemsPerPage={itemsPerPage}
 					/>
